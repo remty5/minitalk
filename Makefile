@@ -6,15 +6,11 @@
 #    By: rvandepu <rvandepu@student.42lehavre.fr>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/06 16:11:02 by rvandepu          #+#    #+#              #
-#    Updated: 2024/03/13 22:36:35 by rvandepu         ###   ########.fr        #
+#    Updated: 2024/03/15 04:30:07 by rvandepu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 BINARIES := server client
-
-FILES  := \
-
-OBJ := $(FILES:%=%.o)
 
 CFLAGS += -Wall -Wextra -Werror
 
@@ -32,7 +28,7 @@ all: $(BINARIES)
 
 clean:
 	$(MAKE) -s -C $(LIBFT_DIR) fclean
-	$(RM) $(BINARIES:%=%.o) $(OBJ)
+	$(RM) $(BINARIES:%=%.o)
 
 fclean: clean
 	$(RM) $(BINARIES)
@@ -45,4 +41,4 @@ test: re
 $(LIBFT_PATH):
 	$(MAKE) -s -C $(LIBFT_DIR) $(LIBFT) -j $$(nproc)
 
-$(BINARIES): $($@:%=%.o) $(OBJ) | $(LIBFT_PATH)
+$(BINARIES): | $(LIBFT_PATH)
